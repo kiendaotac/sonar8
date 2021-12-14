@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  sonarqube:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sonarqube
+    volumes:
+      - ./sona-scanner:/usr/local
+      - ./src:/var/www
+      - ./plugins:/opt/sonarqube/extensions/plugins
+    ports:
+      - "9000:9000"
+    networks:
+      - sonarqube
+networks:
+  sonarqube:
